@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 
 @Service
 public class UserService {
@@ -23,5 +26,9 @@ public class UserService {
 
     public Page<DataListUsers> findAllUsers(@PageableDefault(sort = {"name"},size = 5) Pageable pageable){
         return userRepository.findAll(pageable).map(DataListUsers::new);
+    }
+
+    public Optional<User> findOneUser(UUID id){
+        return userRepository.findById(id);
     }
 }

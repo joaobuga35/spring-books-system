@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,5 +30,10 @@ public class UserController {
     @GetMapping()
     public ResponseEntity findUsers(Pageable pageable){
         return  ResponseEntity.ok(userService.findAllUsers(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity findOneUser(@PathVariable UUID id){
+        return ResponseEntity.ok(userService.findOneUser(id));
     }
 }
