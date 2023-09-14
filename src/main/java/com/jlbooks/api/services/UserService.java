@@ -2,6 +2,7 @@ package com.jlbooks.api.services;
 
 import com.jlbooks.api.domain.users.User;
 import com.jlbooks.api.domain.users.dto.DataListUsers;
+import com.jlbooks.api.domain.users.dto.UserEditRequest;
 import com.jlbooks.api.domain.users.dto.UserRequestDto;
 import com.jlbooks.api.domain.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,16 @@ public class UserService {
 
     public Optional<User> findOneUser(UUID id){
         return userRepository.findById(id);
+    }
+
+//    public Optional<User> editUser(UserEditRequest userData, UUID id){
+//        Optional<User> user = userRepository.findById(id);
+//
+//        user.updateUser(userData);
+//        return user;
+//    }
+
+    public void deleteUser(UUID id){
+        userRepository.deleteById(id);
     }
 }

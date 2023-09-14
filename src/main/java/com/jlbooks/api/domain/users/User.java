@@ -1,6 +1,7 @@
 package com.jlbooks.api.domain.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jlbooks.api.domain.users.dto.UserEditRequest;
 import com.jlbooks.api.domain.users.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -42,6 +43,20 @@ public class User {
         this.name = userData.name();
         this.email = userData.email();
         this.password = userData.password();
+    }
+
+    public void updateUser(UserEditRequest userData){
+        if(userData.name() != null){
+            this.name = userData.name();
+        }
+
+        if(userData.email() != null){
+            this.email = userData.email();
+        }
+
+        if(userData.password() != null){
+            this.password = userData.password();
+        }
     }
 
     public UUID getId() {
