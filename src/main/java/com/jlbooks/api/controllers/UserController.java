@@ -6,6 +6,7 @@ import com.jlbooks.api.domain.users.dto.UserRequestDto;
 import com.jlbooks.api.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class UserController {
        return ResponseEntity.created(uri).body(new DataListUsers(newUser));
     }
     @GetMapping()
-    public ResponseEntity findUsers(){
-        return  ResponseEntity.ok("Hello World");
+    public ResponseEntity findUsers(Pageable pageable){
+        return  ResponseEntity.ok(userService.findAllUsers(pageable));
     }
 }
